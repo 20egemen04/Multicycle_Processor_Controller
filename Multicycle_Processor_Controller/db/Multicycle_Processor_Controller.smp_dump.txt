@@ -1,0 +1,14 @@
+
+State Machine - |controller|maindec:md|current_state
+Name current_state.S10_BEQ current_state.S9_JAL current_state.S8_EXECUTEI current_state.S7_ALUWB current_state.S6_EXECUTER current_state.S5_MEMWRITE current_state.S4_MEMWB current_state.S3_MEMREAD current_state.S2_MEMADR current_state.S1_DECODE current_state.S0_FETCH 
+current_state.S0_FETCH 0 0 0 0 0 0 0 0 0 0 0 
+current_state.S1_DECODE 0 0 0 0 0 0 0 0 0 1 1 
+current_state.S2_MEMADR 0 0 0 0 0 0 0 0 1 0 1 
+current_state.S3_MEMREAD 0 0 0 0 0 0 0 1 0 0 1 
+current_state.S4_MEMWB 0 0 0 0 0 0 1 0 0 0 1 
+current_state.S5_MEMWRITE 0 0 0 0 0 1 0 0 0 0 1 
+current_state.S6_EXECUTER 0 0 0 0 1 0 0 0 0 0 1 
+current_state.S7_ALUWB 0 0 0 1 0 0 0 0 0 0 1 
+current_state.S8_EXECUTEI 0 0 1 0 0 0 0 0 0 0 1 
+current_state.S9_JAL 0 1 0 0 0 0 0 0 0 0 1 
+current_state.S10_BEQ 1 0 0 0 0 0 0 0 0 0 1 

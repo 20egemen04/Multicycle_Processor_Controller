@@ -1,0 +1,102 @@
+|controller
+clk => clk.IN1
+reset => reset.IN1
+op[0] => op[0].IN2
+op[1] => op[1].IN2
+op[2] => op[2].IN2
+op[3] => op[3].IN2
+op[4] => op[4].IN2
+op[5] => op[5].IN3
+op[6] => op[6].IN2
+funct3[0] => funct3[0].IN1
+funct3[1] => funct3[1].IN1
+funct3[2] => funct3[2].IN1
+funct7b5 => funct7b5.IN1
+Zero => PCWrite.IN1
+ImmSrc[0] <= instrdec:id.port1
+ImmSrc[1] <= instrdec:id.port1
+ALUSrcA[0] <= maindec:md.port5
+ALUSrcA[1] <= maindec:md.port5
+ALUSrcB[0] <= maindec:md.port6
+ALUSrcB[1] <= maindec:md.port6
+ResultSrc[0] <= maindec:md.port7
+ResultSrc[1] <= maindec:md.port7
+AdrSrc <= maindec:md.port8
+ALUControl[0] <= aludec:ad.port4
+ALUControl[1] <= aludec:ad.port4
+ALUControl[2] <= aludec:ad.port4
+IRWrite <= maindec:md.port9
+PCWrite <= PCWrite.DB_MAX_OUTPUT_PORT_TYPE
+RegWrite <= maindec:md.port10
+MemWrite <= maindec:md.port11
+
+
+|controller|maindec:md
+clk => current_state~1.DATAIN
+reset => current_state~3.DATAIN
+op[0] => Decoder0.IN6
+op[0] => Equal0.IN13
+op[0] => Equal1.IN13
+op[1] => Decoder0.IN5
+op[1] => Equal0.IN12
+op[1] => Equal1.IN12
+op[2] => Decoder0.IN4
+op[2] => Equal0.IN11
+op[2] => Equal1.IN11
+op[3] => Decoder0.IN3
+op[3] => Equal0.IN10
+op[3] => Equal1.IN10
+op[4] => Decoder0.IN2
+op[4] => Equal0.IN9
+op[4] => Equal1.IN9
+op[5] => Decoder0.IN1
+op[5] => Equal0.IN8
+op[5] => Equal1.IN8
+op[6] => Decoder0.IN0
+op[6] => Equal0.IN7
+op[6] => Equal1.IN7
+Branch <= Branch.DB_MAX_OUTPUT_PORT_TYPE
+PCUpdate <= PCUpdate.DB_MAX_OUTPUT_PORT_TYPE
+ALUSrcA[0] <= ALUSrcA.DB_MAX_OUTPUT_PORT_TYPE
+ALUSrcA[1] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+ALUSrcB[0] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+ALUSrcB[1] <= PCUpdate.DB_MAX_OUTPUT_PORT_TYPE
+ResultSrc[0] <= ResultSrc[0].DB_MAX_OUTPUT_PORT_TYPE
+ResultSrc[1] <= ResultSrc[1].DB_MAX_OUTPUT_PORT_TYPE
+AdrSrc <= AdrSrc.DB_MAX_OUTPUT_PORT_TYPE
+IRWrite <= ResultSrc[1].DB_MAX_OUTPUT_PORT_TYPE
+RegWrite <= RegWrite.DB_MAX_OUTPUT_PORT_TYPE
+MemWrite <= MemWrite.DB_MAX_OUTPUT_PORT_TYPE
+ALUOp[0] <= Branch.DB_MAX_OUTPUT_PORT_TYPE
+ALUOp[1] <= ALUOp.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|controller|aludec:ad
+opb5 => RtypeSub.IN0
+funct3[0] => Mux1.IN4
+funct3[1] => Mux0.IN5
+funct3[1] => Mux1.IN3
+funct3[2] => Mux0.IN4
+funct3[2] => ALUControl.DATAB
+funct7b5 => RtypeSub.IN1
+ALUOp[0] => Equal0.IN3
+ALUOp[0] => Equal1.IN3
+ALUOp[1] => Equal0.IN2
+ALUOp[1] => Equal1.IN2
+ALUControl[0] <= Selector0.DB_MAX_OUTPUT_PORT_TYPE
+ALUControl[1] <= ALUControl.DB_MAX_OUTPUT_PORT_TYPE
+ALUControl[2] <= ALUControl.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|controller|instrdec:id
+op[0] => Decoder0.IN6
+op[1] => Decoder0.IN5
+op[2] => Decoder0.IN4
+op[3] => Decoder0.IN3
+op[4] => Decoder0.IN2
+op[5] => Decoder0.IN1
+op[6] => Decoder0.IN0
+ImmSrc[0] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+ImmSrc[1] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
